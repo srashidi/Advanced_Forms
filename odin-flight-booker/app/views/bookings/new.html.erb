@@ -1,0 +1,31 @@
+<h1>New Booking</h1>
+
+<h3>Flight information</h3>
+Flight ID:
+<strong><%= @flight.id %></strong>
+<br>
+Date & Time:
+<strong><%= @flight.start_datetime.strftime("%m/%d/%Y") %>, <%= @flight.start_datetime.strftime("%I:%M%p") %></strong>
+<br>
+From:
+<strong><%= @flight.from_airport.code %></strong> | To:
+<strong><%= @flight.to_airport.code %></strong>
+<br>
+
+<h3>Passenger information</h3>
+<%= form_for @booking do |f| %>
+	<%= f.hidden_field(:flight_id, :value => @flight.id) %>
+	<%= f.hidden_field(:number_of_passengers, :value => @num_of_pass) %>
+	<% i = 1 %>
+	<%= f.fields_for :passengers do |passenger_form| %>
+		<h4>Passenger <%= i %></h4>
+		<%= passenger_form.label :name %>
+		<%= passenger_form.text_field :name %>
+
+		<%= passenger_form.label :email %>
+		<%= passenger_form.email_field :email %>
+		<% i += 1 %>
+		<br><br>
+	<% end %>
+	<%= f.submit "Create booking" %>
+<% end %>

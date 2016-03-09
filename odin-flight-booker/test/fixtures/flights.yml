@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_airport_id: 1
+  finish_airport_id: 1
+  start_datetime: 2016-03-01 11:52:07
+  duration: 1
+
+two:
+  start_airport_id: 1
+  finish_airport_id: 1
+  start_datetime: 2016-03-01 11:52:07
+  duration: 1

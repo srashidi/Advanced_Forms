@@ -1,0 +1,25 @@
+<h1>Booking #<%= @booking.id %></h1>
+
+Flight ID:
+<strong><%= @booking.flight.id %></strong>
+<br>
+Date & Time:
+<strong><%= @booking.flight.start_datetime.strftime("%m/%d/%Y") %>, <%= @booking.flight.start_datetime.strftime("%I:%M%p") %></strong>
+<br>
+From:
+<strong><%= @booking.flight.from_airport.code %></strong> | To:
+<strong><%= @booking.flight.to_airport.code %></strong>
+<br>
+
+<h3>Passenger Information</h3>
+<% i = 1 %>
+<% @booking.passengers.each do |passenger| %>
+	<h4>Passenger <%= i %></h4>
+	Name:
+	<strong><%= passenger.name %></strong>
+	<br>
+	Email:
+	<strong><%= passenger.email %></strong>
+	<br><br>
+	<% i += 1 %>
+<% end %>

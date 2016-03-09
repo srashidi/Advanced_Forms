@@ -1,0 +1,29 @@
+<h1>Flights</h1>
+<%= form_for('/flights', method: :get) do |f| %>
+	Departing from: <%= f.select(:from_code, @airport_options) %>
+	Arriving at: <%= f.select(:to_code, @airport_options) %>
+	Number of passengers: <%= f.select(:num_of_pass, @number_of_passengers) %>
+	Date: <%= f.select(:date, @dates) %>
+	<%= f.submit "Search" %>
+<% end %>
+<% if request.original_url.include?("?") %>
+	<h3>Results:</h3><br>
+	<% @flights.each do |flight| %>
+		<% if flight.from_airport == @from_airport && flight.to_airport == @to_airport && flight.start_datetime.beginning_of_day == @date %>
+			<% @selected_flights << flight %>
+		<% end %>
+	<% end %>
+	<% if @selected_flights.empty? %>
+		<h4><i>No results found</i></h4>
+	<% else %>
+		<%= form_for('bookings/new', url: new_booking_path, html: {method: :get}) do |f| %>
+			<%= f.hidden_field(:num_of_pass, :value => @num_of_pass) %>
+			<% @selected_flights.each do |flight| %>
+					<%= f.radio_button :flight_id, flight.id %>
+					<%= "From: #{flight.from_airport.code} | To: #{flight.to_airport.code} | Date & Time: #{flight.start_datetime.strftime("%m/%d/%Y")}, #{flight.start_datetime.strftime("%I:%M%p")}" %>
+					<br>
+			<% end %>
+			<%= f.submit "Choose flight" %>
+		<% end %>
+	<% end %>
+<% end %>
