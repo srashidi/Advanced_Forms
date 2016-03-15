@@ -1,0 +1,10 @@
+Thank you for booking your flight, <%= @passenger.name %>!
+
+===============================================================
+
+You have successfully booked your flight from <%= @booking.flight.from_airport.code %> to <%= @booking.flight.to_airport.code %>
+on <%= @booking.flight.start_datetime.strftime("%m/%d/%Y") %> at <%= @booking.flight.start_datetime.strftime("%I:%M%p") %>.
+
+To see your booking, just follow this URL: <%= @url %>.
+
+Thanks for flying with Odin and have a great day!

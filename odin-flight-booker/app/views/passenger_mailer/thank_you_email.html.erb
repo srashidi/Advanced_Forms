@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for booking your flight, <%= @passenger.name %>!</h1>
+    <p>
+      You have successfully booked your flight from
+       <%= @booking.flight.from_airport.code %> to <%= @booking.flight.to_airport.code %> on
+       <%= @booking.flight.start_datetime.strftime("%m/%d/%Y") %> at
+       <%= @booking.flight.start_datetime.strftime("%I:%M%p") %>.<br>
+    </p>
+    <p>
+      To see your booking, just follow this URL: <%= @url %>.
+    </p>
+    <p>Thanks for flying with Odin and have a great day!</p>
+  </body>
+</html>
